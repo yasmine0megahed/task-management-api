@@ -4,8 +4,9 @@ namespace App\Repositories;
 
 use App\Models\Project;
 use App\Models\Task;
+use App\Repositories\Interfaces\DashboardRepositoryInterface;
 
-class DashboardRepository
+class DashboardRepository implements DashboardRepositoryInterface
 {
     /**
      * Create a new class instance.
