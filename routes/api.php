@@ -12,8 +12,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('project')->group(function () {
         require __DIR__ . '/project.php';
     });
-    // *** PROJECTS api routes *** //
+
+    // *** tasks api routes *** //
     Route::prefix('task')->group(function () {
         require __DIR__ . '/task.php';
+    });
+    
+    // ***dashboard api routes *** //
+    Route::prefix('dashboard')->middleware('admin')->group(function () {
+        require __DIR__ . '/dashboard.php';
     });
 });
