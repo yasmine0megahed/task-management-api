@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests\task;
 
+use App\Models\Project;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class UpdateTaskRequest extends FormRequest
@@ -13,15 +15,15 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $project = $this->route('project');
+        $task = $this->route('task');
 
         return auth()->check()
-            && $project
-            && $project->user_id === auth()->id();;
+            && $task
+            && $task->project->user_id === auth()->id();
     }
     protected function failedAuthorization()
     {
-        throw new AuthorizationException('You are not allowed to create a task for this project.');
+        throw new AuthorizationException('You are not allowed to update a task for this project.');
     }
     /**
      * Get the validation rules that apply to the request.

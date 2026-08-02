@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Providers;
-
-use App\Repositories\AuthRepository;
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Interfaces\AuthRepositoryInterface;
 use App\Repositories\Interfaces\ProjectRepositoryInterface;
+use App\Repositories\Interfaces\TaskRepositoryInterface;
+use App\Repositories\AuthRepository;
 use App\Repositories\ProjectRepository;
-use Illuminate\Support\ServiceProvider;
+use App\Repositories\TaskRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,7 +31,10 @@ class AppServiceProvider extends ServiceProvider
         );
 
         // **tasks
-        
+        $this->app->bind(
+            TaskRepositoryInterface::class,
+            TaskRepository::class
+        );
     }
 
     /**

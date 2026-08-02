@@ -12,5 +12,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('project')->group(function () {
         require __DIR__ . '/project.php';
     });
-    
+    // *** PROJECTS api routes *** //
+    Route::prefix('task')->group(function () {
+        require __DIR__ . '/task.php';
+    });
 });

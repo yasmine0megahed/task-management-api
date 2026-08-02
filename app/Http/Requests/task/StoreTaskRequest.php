@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests\task;
 
+use App\Models\Project;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class StoreTaskRequest extends FormRequest
@@ -13,8 +15,7 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $project = $this->route('project');
-
+        $project = Project::find($this->project_id);
         return auth()->check()
             && $project
             && $project->user_id === auth()->id();
